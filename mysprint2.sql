@@ -1,0 +1,1 @@
+SELECT * FROM mysprint2.employees;
