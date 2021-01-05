@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -20,12 +23,20 @@
     }
     echo "Connected successfully<br>";
 ?>
+<header>
+    <div class = "header_container">
+        <h2>Employees</h2>
+        <h2>Projects</h2>
+    </div>
+</header>
+<br>
 
 <table>
-    
-
-
-</table>
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Projects</th>
+</tr>
 
 
 <?php
@@ -35,7 +46,7 @@ $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
-        echo "id: " . $row["id"]. " - Name: " . $row["name"]. " " . $row["lastname"]. "<br>";
+        echo "<tr>" . "<td>" . $row["id"] . "</td>" . " <td> " . $row["name"]. "</td>" . "</tr>";
     }
 } else {
     echo "0 results";
@@ -45,7 +56,7 @@ mysqli_close($conn);
 ?>
 
 
-
+</table>
 
 
 </body>
