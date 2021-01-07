@@ -25,34 +25,48 @@
 ?>
 <header>
     <div class = "header_container">
-        <h2>Employees</h2>
-        <h2>Projects</h2>
+        <h2><a href="./?path=Employees">Employees</a></h2>
+        <h2><a href="./?path=Projects">Projects</a></h2>
     </div>
 </header>
 <br>
-
 <table>
 <tr>
     <th>ID</th>
     <th>Name</th>
     <th>Projects</th>
+    <th>Actions</th>
 </tr>
-
-
 <?php
+
+$path = $_GET['path'];
+if($path == 'Employees'){
+
+    $sql = "SELECT id, name, project_name FROM employees
+            LEFT JOIN projects ON employees.project_id = projects.project_id
+            ORDER BY id";
+    
+    $result = mysqli_query($conn, $sql);
+   
 
 $sql = "SELECT id, name, project_id FROM employees";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>" . "<td>" . $row["id"] . "</td>" . " <td> " . $row["name"]. "</td>" . "</tr>";
+        echo "<tr>" . "<td>" . $row["id"] . "</td><td>" . $row["name"] . "</td><td>" . $row["project_id"] . "</td><td><button>delete</button><button>modify</button>"  . "</tr>";
     }
 } else {
     echo "0 results";
 }
 
 mysqli_close($conn);
+
+} else if ($path == 'Projects') {
+
+
+    
+}
 ?>
 
 
