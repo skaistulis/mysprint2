@@ -38,7 +38,7 @@
         $sql = 'DELETE FROM employees WHERE id = ?';
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('i', $_GET['id']);
-        $res = $stmt->execute();
+        $stmt->execute();
         $stmt->close();
         mysqli_close($conn);
         header("location:./?path=Employees");
@@ -49,7 +49,34 @@
         $sql = 'DELETE FROM projects WHERE project_id = ?';
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('i', $_GET['id']);
-        $res = $stmt->execute();
+        $stmt->execute();
+        $stmt->close();
+        mysqli_close($conn);
+        header("location:./?path=Projects");
+        die();
+    }
+//-----------------------------------------------------------------add new employee/project logic------------------------------------------------
+//add new employee
+    if(isset($_POST['firstname'])){
+        $firstname = $_POST['firstname'];
+        echo $firstname;
+        $sql = 'INSERT INTO employees (name) VALUES (?)';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $firstname);
+        $stmt->execute();
+        $stmt->close();
+        mysqli_close($conn);
+        header("location:./?path=Employees");
+        die();
+    }
+
+//add new project 
+    if(isset($_POST['projectname'])){
+        $projectname = $_POST['projectname'];
+        $sql = 'INSERT INTO projects (project_name) VALUES (?)';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $projectname);
+        $stmt->execute();
         $stmt->close();
         mysqli_close($conn);
         header("location:./?path=Projects");
@@ -58,16 +85,26 @@
 //------------------------------------------------------------------------tables-----------------------------------------------------------------
     //employees table
     if($path == 'Employees') {
+       ?>
+       <!---------------------- add new employee form-------------------->
+        <form action="" method="POST">
+        <label for="firstname">Add new Employee: </label>
+        <input type="text" name="firstname" id="firstname" placeholder="Name" Required>
+        <input type="submit" name="submit" value="Submit">
+        </form><br>
+        <!-----------------------form ends-------------------------->
+        <?php
         $sql = "SELECT id, name, project_name FROM employees
-                LEFT JOIN projects ON employees.project_id = projects.project_id";
+                LEFT JOIN projects ON employees.project_id = projects.project_id
+                ORDER BY id";
         $result = mysqli_query($conn, $sql);
     
         if (mysqli_num_rows($result) > 0) { //if in employees tbl is more than one result, then:
-            echo "<table><tr><th>ID</th><th>Name</th><th>Projects</th><th>Actions</th></tr>";
+            echo "<table><tr><th>ID</th><th>Name</th><th>Project</th><th>Actions</th></tr>";
             while($row = mysqli_fetch_assoc($result)) {
             echo '<tr><td>' . $row['id'] . '</td>
                     <td>' . $row['name'] . '</td>
-                    <td>' . $row['project_id'] . '</td>
+                    <td>' . $row['project_name'] . '</td>
                     <td>' . '<a href="?action=deleteEmployee&id=' . $row['id'] . '"><button>delete</button></a><button>modify</button></td></tr>';
             } 
         } else echo "No results";
@@ -75,6 +112,15 @@
 
     //project table
     } else if ($path == 'Projects') {
+        ?>
+        <!-- ------------------ add new project form---------------------->
+        <form action="" method="POST">
+        <label for="projectname">Add new Project: </label>
+        <input type="text" name="projectname" id="projectname" placeholder="Name" Required>
+        <input type="submit" name="submit" value="Submit">
+        </form><br>
+        <!-- ---------------------form ends-------------------------->
+        <?php 
         $sql = "SELECT group_concat(employees.name SEPARATOR ', ') AS 'Employees working on project', projects.project_id, projects.project_name 
                 FROM projects 
                 LEFT JOIN employees ON employees.project_id = projects.project_id
