@@ -16,6 +16,10 @@ th {
   padding: 8px;
 }
 
+.actions {
+  display: flex;
+}
+
 tr:nth-child(even) {
   background-color: #dddddd;
 }
@@ -26,4 +30,20 @@ tr:nth-child(even) {
   margin: 0 auto;
   align-items: center;
   justify-content: space-around;
+}
+
+.addForm {
+  margin: 0 auto;
+  justify-content: center;
+  display: flex;
+}
+
+.updateDiv {
+  text-align: center;
+  margin: 130px auto;
+}
+
+h3 {
+  text-align: center;
+  color: red;
 }
