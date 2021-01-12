@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="all" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <title>CRUDapp</title>
 </head>
 <body>
 
@@ -46,29 +46,33 @@
 //-----------------------------------------------------------------add new employee/project logic------------------------------------------------
 //add new employee
     if(isset($_POST['firstname'])){
-        $firstname = $_POST['firstname'];
-        echo $firstname;
-        $sql = 'INSERT INTO employees (name) VALUES (?)';
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('s', $firstname);
-        $stmt->execute();
-        $stmt->close();
-        mysqli_close($conn);
-        header("location:./?path=Employees");
-        die();
+        if ($_POST['firstname'] != ''){
+            $firstname = $_POST['firstname'];
+            echo $firstname;
+            $sql = 'INSERT INTO employees (name) VALUES (?)';
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $firstname);
+            $stmt->execute();
+            $stmt->close();
+            mysqli_close($conn);
+            header("location:./?path=Employees");
+            die(); 
+        } else echo '<h3>Employee name can not be empty!</h3>'; 
     }
 
 //add new project 
     if(isset($_POST['projectname'])){
-        $projectname = $_POST['projectname'];
-        $sql = 'INSERT INTO projects (project_name) VALUES (?)';
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('s', $projectname);
-        $stmt->execute();
-        $stmt->close();
-        mysqli_close($conn);
-        header("location:./?path=Projects");
-        die();
+        if ($_POST['projectname'] != ''){
+            $projectname = $_POST['projectname'];
+            $sql = 'INSERT INTO projects (project_name) VALUES (?)';
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $projectname);
+            $stmt->execute();
+            $stmt->close();
+            mysqli_close($conn);
+            header("location:./?path=Projects");
+            die();  
+        } else echo '<h3>Project name can not be empty!</h3>'; 
     }
 //------------------------------------------------------------------------tables-----------------------------------------------------------------
     //employees table----------------
@@ -135,11 +139,8 @@
         } else echo "No results";
         mysqli_close($conn);  
     }
-
     ?>
 </table>
-
-
 </body>
 </html>
 
