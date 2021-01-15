@@ -47,3 +47,9 @@ h3 {
   text-align: center;
   color: red;
 }
+
+.tables {
+  width: 800px;
+  margin: 0 auto;
+  table-layout: fixed;
+}
