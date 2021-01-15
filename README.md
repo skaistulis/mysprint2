@@ -1,5 +1,4 @@
-# mysprint2
-mysprint2
+
 # CRUDapp
 
 You can manage projects and employees, who works on projects.
