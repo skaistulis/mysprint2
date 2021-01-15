@@ -91,7 +91,7 @@
         $result = mysqli_query($conn, $sql);
     
         if (mysqli_num_rows($result) > 0) { //if in employees tbl is more than one result, then:
-            echo "<table><tr><th>ID</th><th>Name</th><th>Project</th><th>Actions</th></tr>";
+            echo "<table class='tables'><tr><th>ID</th><th>Name</th><th>Project</th><th>Actions</th></tr>";
             while($row = mysqli_fetch_assoc($result)) {
             echo '<tr><td>' . $row['id'] . '</td>
                     <td>' . $row['name'] . '</td>
@@ -123,7 +123,7 @@
                 GROUP BY project_id";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {
-            echo "<table><tr><th>ID</th><th>Project</th><th>Employees</th><th>Actions</th></tr>";
+            echo "<table class='tables'><tr><th>ID</th><th>Project</th><th>Employees</th><th>Actions</th></tr>";
             while($row = mysqli_fetch_assoc($result)) {
                echo '<tr><td>' . $row['project_id'] . '</td>
                     <td>' . $row['project_name'] . '</td>

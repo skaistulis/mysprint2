@@ -29,7 +29,7 @@ CREATE TABLE `employees` (
   PRIMARY KEY (`id`),
   KEY `employees_ibfk_1` (`project_id`),
   CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_lithuanian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_lithuanian_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` VALUES (1,'Ema',NULL),(2,'Ieva',NULL),(3,'Juozas',NULL),(4,'Petras',NULL),(5,'Dominyka',NULL),(6,'Domas',NULL),(7,'Tomas',NULL),(8,'Lukas',NULL),(9,'Jonas',NULL),(10,'Barbora',NULL);
+INSERT INTO `employees` VALUES (1,'Ina',2),(2,'Ana',2),(3,'Tomas',3),(4,'Julius',3),(5,'Petras',4),(6,'Jonas',4),(7,'Justas',5),(8,'Barbora',6),(9,'Ieva',5);
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,7 +53,7 @@ CREATE TABLE `projects` (
   `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_lithuanian_ci DEFAULT NULL,
   PRIMARY KEY (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_lithuanian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_lithuanian_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` VALUES (1,'PHP'),(2,'JAVA'),(3,'JavaScript'),(4,'CSS'),(5,'Ruby'),(6,'Typescript');
+INSERT INTO `projects` VALUES (1,'Java'),(2,'Test'),(3,'PHP'),(4,'HTML'),(5,'CSS'),(6,'JS');
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -75,4 +75,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-07 18:27:25
+-- Dump completed on 2021-01-15 17:45:11
