@@ -1,15 +1,15 @@
 
-# CMS
+# CRUDapp
 
-Simple CMS app.
+You can manage projects and employees, who works on projects.
 
 ## Installation
 
 Download this repository;
 
-Rename main folder to MySprint3;
+Edit connection.php, if needed;
 
-Export database.sql to mySQL workbench;
+Export mySprint.sql to mySQL workbench;
 
-Edit bootstrap.php, if needed.
+Run index.php.
 
